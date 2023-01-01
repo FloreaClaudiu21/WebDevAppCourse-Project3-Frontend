@@ -20,7 +20,6 @@ const HeaderTopLogged = ({ user, isAdmin, signOut }) => {
 	const { status, data: UserDoc } = useFirestoreDocData(
 		doc(firestore, "users", user.uid)
 	);
-	console.log(UserDoc);
 	if (status === "loading") <></>;
 	return (
 		<>
@@ -98,7 +97,7 @@ const HeaderTop = ({
 								className="bg-black rounded-md text-white hover:text-gray-200 hover:bg-[rgb(139,139,139)] hover:scale-105 transition-all"
 								startIcon={<LoginOutlined className="w-4 h-4" />}
 							>
-								Login In
+								Login
 							</Button>
 						</Tooltip>
 					</Stack>

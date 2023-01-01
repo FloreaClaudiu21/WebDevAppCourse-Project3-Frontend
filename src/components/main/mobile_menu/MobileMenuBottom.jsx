@@ -37,7 +37,7 @@ const MobileMenuBottom = ({
 				className="bg-black rounded-md text-white hover:text-gray-200 hover:bg-[rgb(139,139,139)] w-full hover:scale-105 transition-all"
 				startIcon={<LoginOutlined className="w-4 h-4" />}
 			>
-				Login In
+				Login
 			</Button>
 		</Stack>
 	);
