@@ -9,14 +9,14 @@ const FeedBackListItem = ({
 		<Stack className="py-2 gap-1 px-1 bg-gray-100 rounded-sm shadow-md">
 			<Stack className="flex-row gap-3">
 				<Avatar
-					src={user.data.photo}
+					src={user.photo}
 					className="h-8 w-8"
 				/>
 				<Stack className="break-words">
 					<p className="text-sm text-blue-600 break-all">
-						{user.data.username}
+						{user.username}
 					</p>
-					<p className="text-xs text-gray-500 break-all">{user.data.email}</p>
+					<p className="text-xs text-gray-500 break-all">{user.email}</p>
 				</Stack>
 			</Stack>
 			<hr />
