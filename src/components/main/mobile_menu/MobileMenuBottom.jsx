@@ -14,6 +14,7 @@ const MobileMenuBottom = ({
 		<Stack className="flex-col place-items-center justify-center gap-4 p-1 pt-2 pb-0 pl-0">
 			<Link
 				to="myaccount"
+				onClick={() => setMobileMenu(!mobileMenu)}
 				className="bg-black rounded-md text-white hover:text-gray-200 hover:bg-[rgb(139,139,139)] p-1 w-full text-center"
 			>
 				My Account
