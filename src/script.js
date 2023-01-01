@@ -1,3 +1,5 @@
+const HOST_URL = "https://webappcourse-project3-backend.onrender.com";
+
 const prettier_error = (error) => {
 	return error.message
 		.replace("Firebase: ", "")
@@ -44,6 +46,7 @@ const validate_email = (email) => {
 };
 
 export {
+	HOST_URL,
 	validate_text,
 	validate_email,
 	validate_password,

@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { HOST_URL } from "../script";
 
 const useIsAdmin = (UserData, setError, setLoading) => {
 	const [isAdmin, setAdmin] = useState(false);
 	const [alreadyFetched, setalreadyFetched] = useState(false);
 	const retrieve_admin = () => {
 		if (!UserData || !UserData.user || alreadyFetched) return;
-		fetch("http://localhost:5100/api/v1/admin", {
+		fetch(HOST_URL + "/api/v1/admin", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

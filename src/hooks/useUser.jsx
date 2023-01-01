@@ -16,6 +16,7 @@ import {
 	useSigninCheck,
 } from "reactfire";
 import {
+	HOST_URL,
 	prettier_error,
 	validate_email,
 	validate_password,
@@ -324,7 +325,7 @@ const useUser = ({
 	const forgotPass = async () => {
 		const email = emailRef.current.value;
 		const actionCodeSettings = {
-			url: "http://localhost:3000/",
+			url: "webdevapp-project3-rockbands.netlify.app",
 			handleCodeInApp: false,
 		};
 		try {
@@ -344,7 +345,7 @@ const useUser = ({
 	const addAdmin = async () => {
 		let added = false;
 		try {
-			let response = await fetch("http://localhost:5100/api/v1/admins", {
+			let response = await fetch(HOST_URL + "/api/v1/admins", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -379,7 +380,7 @@ const useUser = ({
 	const removeAdmin = async () => {
 		let removed = false;
 		try {
-			let response = await fetch("http://localhost:5100/api/v1/admins", {
+			let response = await fetch(HOST_URL + "/api/v1/admins", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { HOST_URL } from "../script";
 
 const useBands = (setError) => {
 	const [bands, setBands] = useState([]);
 	///////////////////////////////////////
 	useEffect(() => {
-		fetch("http://localhost:5100/api/v1/bands")
+		fetch(HOST_URL + "/api/v1/bands")
 			.then((res) => res.json())
 			.then((res) => {
 				const list = [];

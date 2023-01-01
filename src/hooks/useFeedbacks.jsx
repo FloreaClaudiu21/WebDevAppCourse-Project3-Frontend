@@ -3,6 +3,7 @@ import { useSnackbar } from "notistack";
 import { useCallback, useMemo, useState } from "react";
 import uuid from "react-uuid";
 import { useFirestore } from "reactfire";
+import { HOST_URL } from "../script";
 
 const useFeedbacks = ({
 	user,
@@ -79,7 +80,7 @@ const useFeedbacks = ({
 	const retrieve = useCallback(async () => {
 		setFetching(true);
 		try {
-			let response = await fetch("http://localhost:5100/api/v1/feedbacks");
+			let response = await fetch(HOST_URL + "/api/v1/feedbacks");
 			response = await response.json();
 			if (response.error) {
 				setFeedbacks([]);
@@ -101,7 +102,7 @@ const useFeedbacks = ({
 		if (sending || !isLogged || !canSend) return;
 		setSending(true);
 		try {
-			let response = await fetch("http://localhost:5100/api/v1/feedbacks", {
+			let response = await fetch(HOST_URL + "/api/v1/feedbacks", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -141,7 +142,7 @@ const useFeedbacks = ({
 		if (deleting || !isLogged) return;
 		setDeleting(true);
 		try {
-			let response = await fetch("http://localhost:5100/api/v1/feedbacks", {
+			let response = await fetch(HOST_URL + "/api/v1/feedbacks", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
