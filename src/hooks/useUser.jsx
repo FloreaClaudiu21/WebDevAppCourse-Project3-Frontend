@@ -325,7 +325,7 @@ const useUser = ({
 	const forgotPass = async () => {
 		const email = emailRef.current.value;
 		const actionCodeSettings = {
-			url: "webdevapp-project3-rockbands.netlify.app",
+			url: "https://webdevapp-project3-rockbands.netlify.app",
 			handleCodeInApp: false,
 		};
 		try {
