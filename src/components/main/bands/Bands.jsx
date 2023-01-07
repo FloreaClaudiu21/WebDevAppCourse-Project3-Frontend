@@ -4,7 +4,7 @@ import Intro from "./Intro";
 import uuid from "react-uuid";
 import { Container, Stack } from "@mui/material";
 
-const Bands = ({ bands }) => {
+const Bands = ({ user, bands, likes, setLikes, isLogged }) => {
 	return (
 		<Container
 			maxWidth="xl"
@@ -16,7 +16,11 @@ const Bands = ({ bands }) => {
 					return (
 						<Band
 							key={uuid()}
+							user={user}
 							band={band}
+							likes={likes}
+							setLikes={setLikes}
+							isLogged={isLogged}
 						/>
 					);
 				})}

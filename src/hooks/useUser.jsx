@@ -10,11 +10,7 @@ import {
 import { deleteDoc, doc, setDoc, updateDoc } from "firebase/firestore";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
-import {
-	useAuth,
-	useFirestore,
-	useSigninCheck,
-} from "reactfire";
+import { useAuth, useFirestore, useSigninCheck } from "reactfire";
 import {
 	HOST_URL,
 	prettier_error,
@@ -108,10 +104,10 @@ const useUser = ({
 			return false;
 		}
 		if (text.match(text1)) {
-			errMsgRef.current.innerHTML = "❌ Error: Passwords must match";
+			errMsgRef.current.innerHTML = "";
 			return true;
 		}
-		errMsgRef.current.innerHTML = "";
+		errMsgRef.current.innerHTML = "❌ Error: Passwords must match";
 		return false;
 	};
 	const checkInputs = () => {
@@ -294,8 +290,11 @@ const useUser = ({
 		setLoading(true);
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((UserData) => {
-				updateProfile(UserData.user, {
-					displayName: username,
+				setDoc(doc(firestore, "users", UserData.user.uid), {
+					uid: UserData.user.uid,
+					username: username,
+					email: email,
+					photo: UserData.user.photoURL,
 				}).then(() => {
 					setAuthPanel(false);
 					enqueueSnackbar(
@@ -305,15 +304,6 @@ const useUser = ({
 							variant: "success",
 						}
 					);
-				});
-				let user = UserData.user;
-				setDoc(doc(firestore, "users", user.uid), {
-					data: {
-						uid: user.uid,
-						username: username,
-						email: email,
-						photo: user.photoURL,
-					},
 				});
 			})
 			.catch((reason) => {

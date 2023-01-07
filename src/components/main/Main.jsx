@@ -11,6 +11,7 @@ import AuthPanel from "./authpanel/AuthPanel";
 import { Outlet } from "react-router-dom";
 import useBands from "../../hooks/useBands";
 import useUser from "../../hooks/useUser";
+import useLikes from "../../hooks/useLikes";
 
 const PageWrapper = ({ loading, children }) => {
 	return (
@@ -25,6 +26,7 @@ const PageWrapper = ({ loading, children }) => {
 };
 
 const Main = () => {
+	const [loading, setLoading] = useState(false);
 	const [authPanel, setAuthPanel] = useState(false);
 	const [mobileMenu, setMobileMenu] = useState(false);
 	const {
@@ -34,14 +36,31 @@ const Main = () => {
 		UserData,
 		isAdmin,
 		isLogged,
-		loading,
 		retrieve_admin,
 	} = useUser({});
-	const { bands } = useBands(setError);
+	const [userLikes, setUserLikes] = useState([]);
+	const { bands, retrieve_bands } = useBands(setError);
+	const { retrieve_likes } = useLikes({
+		user: UserData?.user,
+		isLogged: isLogged,
+		setLikes: setUserLikes,
+	});
 	const isLoading = status === "loading" || loading || bands.length <= 0;
+	const load_data = async () => {
+		setLoading(true);
+		await retrieve_bands();
+		setLoading(false);
+		return;
+	};
+	useEffect(() => {
+		load_data();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	useEffect(() => {
 		retrieve_admin();
-	}, [retrieve_admin]);
+		retrieve_likes();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [UserData]);
 	return (
 		<>
 			<Helmet>
@@ -62,7 +81,13 @@ const Main = () => {
 					authPanel={authPanel}
 					setAuthPanel={setAuthPanel}
 				/>
-				<Bands bands={bands} />
+				<Bands
+					bands={bands}
+					likes={userLikes}
+					isLogged={isLogged}
+					user={UserData?.user}
+					setLikes={setUserLikes}
+				/>
 				<Feedback
 					isAdmin={isAdmin}
 					isLogged={isLogged}
