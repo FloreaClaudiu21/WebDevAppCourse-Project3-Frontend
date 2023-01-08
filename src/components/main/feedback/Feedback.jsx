@@ -82,7 +82,7 @@ const Feedback = ({ user, isLogged, isAdmin }) => {
 						disabled={!isLogged}
 						onChange={check_textArea}
 						title={!isLogged ? "You must be logged in" : ""}
-						className="border-none w-full h-[600px] p-1 resize-y rounded-lg bg-slate-100 disabled:bg-gray-300"
+						className="border-none w-full h-[350px] md:h-[450px] p-1 resize-y rounded-lg bg-slate-100 disabled:bg-gray-300"
 					></textarea>
 				</Stack>
 				<Typography className="empty:hidden text-sm bg-pink-400 text-red-800 rounded-lg p-2"></Typography>

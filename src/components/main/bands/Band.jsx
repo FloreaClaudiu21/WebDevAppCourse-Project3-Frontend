@@ -50,7 +50,7 @@ const Band = ({ user, band, likes, setLikes, isLogged }) => {
 					</Typography>
 				</Box>
 			</Box>
-			<Stack className="w-full h-[650px] min-w-[250px]">
+			<Stack className="w-full h-[350px] md:h-[500px] min-w-[250px]">
 				<Iframe
 					url={band.embed}
 					className="w-full h-full border-none"

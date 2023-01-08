@@ -14,7 +14,7 @@ const MobileMenuItem = ({ band, setMobileMenu }) => {
 				<a
 					href={"#" + band.linkref}
 					onClick={() => setMobileMenu(false)}
-					className="text-[#3927c2] font-semibold hover:underline hover:cursor-pointer"
+					className="text-[#3927c2] text-lg font-semibold leading-relaxed hover:underline hover:cursor-pointer"
 				>
 					{band.title}
 				</a>
@@ -40,7 +40,7 @@ const MobileMenu = ({
 				in={mobileMenu}
 				direction="right"
 			>
-				<Stack className="flex w-[90%] top-0 left-0 p-4 h-full bg-white fixed transition-all duration-[0.4s]">
+				<Stack className="flex w-[90%] top-0 left-0 p-4 h-full bg-white fixed overflow-y-auto transition-all duration-[0.4s]">
 					<MobileMenuTop setMobileMenu={setMobileMenu} />
 					<hr />
 					<Stack className="h-full">
